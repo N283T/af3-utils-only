@@ -8,6 +8,16 @@
 # if received directly from Google. Use is subject to terms of use available at
 # https://github.com/google-deepmind/alphafold3/blob/main/WEIGHTS_TERMS_OF_USE.md
 
+# macOSの場合のみ特別な設定
+if(APPLE)
+    execute_process(
+        COMMAND xcrun --show-sdk-path
+        OUTPUT_VARIABLE CMAKE_OSX_SYSROOT
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "14.0")
+endif()
+
 cmake_minimum_required(VERSION 3.28)
 project(
   "${SKBUILD_PROJECT_NAME}"
